@@ -1,0 +1,51 @@
+Table customer {
+  customerId int [primary key]
+  fullname varchar
+  address varchar
+  email varchar
+  phone int
+}
+
+Table product {
+  productId int [primary key]
+  name varchar
+  description text
+  price decimal
+  stock int
+  categoryId int
+}
+
+Table order {
+  orderId int
+  orderdate datetime
+  totalamount decimal
+  customerId int
+}
+
+Table categories {
+  categoryId int
+  name varchar
+  description text
+}
+
+Table orderItem {
+  orederItemId int [primary key]
+  orderId int
+  product int 
+  quantity int
+  price decimal
+}
+
+Table payment {
+  paymentId int
+  orderId int
+  payDate datetime
+  status varchar
+  payMethod varchar
+  amount float
+}
+
+Ref: product.categoryId > categories.categoryId
+Ref: order.customerId > customer.customerId
+Ref: orderItem.orderId > order.orderId
+Ref: payment.orderId > order.orderId
